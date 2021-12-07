@@ -5,11 +5,10 @@ import {
 	createGenerateClassName
 } from '@material-ui/core/styles';
 
-// import MarketingApp from './components/MarketingApp';
-// import AuthApp from './components/AuthApp';
 const LazyMarketing = lazy(() => import('./components/MarketingApp'));
 const LazyAuth = lazy(() => import('./components/AuthApp'));
 import Header from './components/Header';
+import Progress from './components/Progress';
 
 const generateClassName = createGenerateClassName({
 	productionPrefix: 'co'
@@ -21,7 +20,7 @@ const App = () => {
 			<StylesProvider generateClassName={generateClassName}>
 				<div>
 					<Header />
-					<Suspense fallback={<p>Loading...</p>}>
+					<Suspense fallback={<Progress />}>
 						<Switch>
 							<Route path="/auth" component={LazyAuth} />
 							<Route path="/" component={LazyMarketing} />
